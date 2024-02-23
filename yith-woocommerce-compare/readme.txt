@@ -4,7 +4,7 @@ Contributors: yithemes
 Tags: yith, woocommerce compare, compare products, product compare, product comparison
 Requires at least: 6.2
 Tested up to: 6.4
-Stable tag: 2.35.0
+Stable tag: 2.36.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,9 @@ Full documentation is available [here](https://docs.yithemes.com/yith-woocommerc
 This plugin is 100% compatible with [WPML](https://wpml.org/)
 
 
-= Installation =
+== Installation ==
+
+**Important**: First of all, you have to download and activate [WooCommerce](https://wordpress.org/plugins/woocommerce) plugin, because without it YITH WooCommerce Compare cannot work.
 
 1. Unzip the downloaded zip file.
 2. Upload the plugin folder into the `wp-content/plugins/` directory of your WordPress site.
@@ -65,6 +67,11 @@ yith-woocommerce-compare-<WORDPRESS LOCALE >.mo
 3. The settings of plugin
 
 == Changelog ==
+
+= 2.36.0 = Released on 22 February 2024
+
+* New: support for WooCommerce 8.6
+* Update: YITH plugin framework
 
 = 2.35.0 = Released on 18 January 2024
 

@@ -278,7 +278,8 @@ if ( ! class_exists( 'YITH_Woocompare_Frontend' ) ) {
 			// Check if is add to cart.
 			if ( isset( $_REQUEST['add-to-cart'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$product_id = absint( $_REQUEST['add-to-cart'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				wp_safe_redirect( get_permalink( $product_id ) );
+				wp_safe_redirect( get_permalink( $product_id ),
+					apply_filters( 'yith_woocompare_redirect_status', 302 ) );
 				exit;
 			}
 
@@ -586,7 +587,8 @@ if ( ! class_exists( 'YITH_Woocompare_Frontend' ) ) {
 				$this->add_product_to_compare( $product_id );
 			}
 
-			wp_safe_redirect( esc_url( remove_query_arg( array( 'id', 'action' ) ) ) );
+			wp_safe_redirect( esc_url( remove_query_arg( array( 'id', 'action' ) ) ),
+				apply_filters( 'yith_woocompare_redirect_status', 302 ) );
 			exit();
 		}
 
@@ -654,7 +656,8 @@ if ( ! class_exists( 'YITH_Woocompare_Frontend' ) ) {
 				$redirect = esc_url( remove_query_arg( 'redirect', add_query_arg( 'action', $this->action_view, $redirect ) ) );
 			}
 
-			wp_safe_redirect( $redirect );
+			wp_safe_redirect( $redirect,
+				apply_filters( 'yith_woocompare_redirect_status', 302 ) );
 			exit();
 		}
 

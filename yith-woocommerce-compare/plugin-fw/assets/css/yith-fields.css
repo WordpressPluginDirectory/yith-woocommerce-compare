@@ -1007,6 +1007,7 @@ span.select2.select2-container.select2-container--default.yith-plugin-fw-select2
     border  : 0 !important;
     padding : 0 !important;
     height  : 30px !important;
+    width   : 100% !important;
 }
 
 .yith-plugin-ui .select2-container--default .select2-search--dropdown .select2-search__field,
@@ -1417,7 +1418,7 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 }
 
 .yith-plugin-ui .yith-plugin-fw-field-wrapper .wp-picker-input-wrap .wp-picker-clear {
-    display: none !important;
+    display : none !important;
 }
 
 .yith-plugin-ui .yith-plugin-fw-field-wrapper .wp-picker-active .iris-picker,
@@ -1520,7 +1521,7 @@ div#ui-datepicker-div.yith-plugin-fw-datepicker-div {
 
 .yith-plugin-ui .yith-single-colorpicker > label {
     display        : block;
-    font-size      : 11px;
+    font-size      : 10px;
     font-weight    : 600;
     margin         : 0 0 10px 0;
     text-transform : uppercase;

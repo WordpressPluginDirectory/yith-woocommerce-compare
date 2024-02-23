@@ -29,6 +29,18 @@ jQuery( function ( $ ) {
 		};
 	};
 
+	var cleanRequestData = function ( data ) {
+		data = $.extend( {}, data );
+		$.each(
+			['placeholder', 'allow_clear', 'minimum_input_length', 'sortable'],
+			function ( _, key ) {
+				delete data[ key ];
+			}
+		);
+
+		return data;
+	}
+
 	$( document.body )
 		.on( 'yith-framework-enhanced-select-init', function () {
 			// Post Search
@@ -52,11 +64,7 @@ jQuery( function ( $ ) {
 							dataType      : 'json',
 							quietMillis   : 250,
 							data          : function ( params ) {
-								var default_data_to_return = {
-									term: params.term
-								};
-
-								return $.extend( default_data_to_return, current_data );
+								return cleanRequestData( $.extend( { term: params.term }, current_data ) )
 							},
 							processResults: function ( data ) {
 								var terms = [];
@@ -115,11 +123,7 @@ jQuery( function ( $ ) {
 							dataType      : 'json',
 							quietMillis   : 250,
 							data          : function ( params ) {
-								var default_data_to_return = {
-									term: params.term
-								};
-
-								return $.extend( default_data_to_return, current_data );
+								return cleanRequestData( $.extend( { term: params.term }, current_data ) )
 							},
 							processResults: function ( data ) {
 								var terms = [];
@@ -179,11 +183,7 @@ jQuery( function ( $ ) {
 							dataType      : 'json',
 							quietMillis   : 250,
 							data          : function ( params ) {
-								var default_data_to_return = {
-									term: params.term
-								};
-
-								return $.extend( default_data_to_return, current_data );
+								return cleanRequestData( $.extend( { term: params.term }, current_data ) )
 							},
 							processResults: function ( data ) {
 								var terms = [];

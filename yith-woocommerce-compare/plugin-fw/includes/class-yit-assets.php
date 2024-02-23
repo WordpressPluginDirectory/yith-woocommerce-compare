@@ -105,7 +105,7 @@ if ( ! class_exists( 'YIT_Assets' ) ) {
 				'monthShort'   => 'M',
 				'weekday'      => 'l',
 				'weekdayShort' => 'D',
-				'fullDate'     => get_option( 'date_format', __( 'F j, Y' ) ),
+				'fullDate'     => get_option( 'date_format', 'F j, Y' ),
 				'inputDate'    => 'Y-m-d',
 				'monthAndDate' => 'F j',
 				'monthAndYear' => 'F Y',
