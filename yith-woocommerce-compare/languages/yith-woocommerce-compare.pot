@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the YITH WooCommerce Compare package.
 msgid ""
 msgstr ""
-"Project-Id-Version: YITH WooCommerce Compare 2.36.0\n"
+"Project-Id-Version: YITH WooCommerce Compare 2.39.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/yith_woocommerce_compare\n"
-"POT-Creation-Date: 2024-02-22 14:52:46+00:00\n"
+"POT-Creation-Date: 2024-05-23 10:38:06+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,30 +31,30 @@ msgstr ""
 msgid "Do you want to hard crop the image?"
 msgstr ""
 
-#: includes/class.yith-woocompare-frontend.php:215
+#: includes/class.yith-woocompare-frontend.php:218
 msgid "Added"
 msgstr ""
 
-#: includes/class.yith-woocompare-frontend.php:216 templates/compare.php:57
+#: includes/class.yith-woocompare-frontend.php:219 templates/compare.php:57
 msgid "Product Comparison"
 msgstr ""
 
-#: includes/class.yith-woocompare-frontend.php:219
-#: includes/class.yith-woocompare-frontend.php:503
+#: includes/class.yith-woocompare-frontend.php:222
+#: includes/class.yith-woocompare-frontend.php:509
 #: plugin-options/general-options.php:38
 #: widgets/class.yith-woocompare-widget.php:55
 msgid "Compare"
 msgstr ""
 
-#: includes/class.yith-woocompare-frontend.php:373
+#: includes/class.yith-woocompare-frontend.php:379
 msgid "In stock"
 msgstr ""
 
-#: includes/class.yith-woocompare-frontend.php:726
+#: includes/class.yith-woocompare-frontend.php:736
 msgid "No products to compare"
 msgstr ""
 
-#: includes/class.yith-woocompare-frontend.php:738 templates/compare.php:139
+#: includes/class.yith-woocompare-frontend.php:748 templates/compare.php:139
 msgid "Remove"
 msgstr ""
 
@@ -95,13 +95,13 @@ msgstr ""
 msgid "Dimensions"
 msgstr ""
 
-#: init.php:51
+#: init.php:52
 msgid ""
 "YITH WooCommerce Compare is enabled but not effective. It requires "
 "WooCommerce in order to work."
 msgstr ""
 
-#: init.php:65
+#: init.php:66
 msgid ""
 "You can't activate the free version of YITH WooCommerce Compare while you "
 "are using the premium one."
@@ -413,7 +413,7 @@ msgid ""
 "e-commerce shop on <strong>YITH</strong></a>."
 msgstr ""
 
-#: includes/class.yith-woocompare-frontend.php:221
+#: includes/class.yith-woocompare-frontend.php:224
 msgctxt "Label for popup close icon"
 msgid "Close"
 msgstr ""

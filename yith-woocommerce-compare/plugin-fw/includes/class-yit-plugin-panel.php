@@ -1386,7 +1386,8 @@ if ( ! class_exists( 'YIT_Plugin_Panel' ) ) {
 				$item = wp_parse_args( $item, $item_defaults );
 
 				if ( $item['url'] ) {
-					$item['url'] = $this->add_utm_data( $item['url'], 'your-store-tools' );
+					$plugin_ref  = basename( wp_parse_url( $item['url'] )['path'] ?? '' );
+					$item['url'] = $this->add_utm_data( $item['url'], 'your-store-tools', 'button-cta', $plugin_ref );
 				}
 
 				$options['items'][ $key ] = $item;
@@ -2532,14 +2533,17 @@ if ( ! class_exists( 'YIT_Plugin_Panel' ) ) {
 		 *
 		 * @param string $url      The url.
 		 * @param string $campaign The campaign.
+		 * @param string $content  The content.
+		 * @param string $term     The term.
 		 *
 		 * @return string
 		 * @since 4.1.0
+		 * @since 4.5.8 Added $content and $term prams.
 		 */
-		public function add_utm_data( $url, $campaign ) {
+		public function add_utm_data( $url, $campaign, $content = '', $term = '' ) {
 			$plugin_slug = $this->get_plugin_slug();
 			if ( $plugin_slug ) {
-				$url = yith_plugin_fw_add_utm_data( $url, $plugin_slug, $campaign, $this->get_plugin_version_type() );
+				$url = yith_plugin_fw_add_utm_data( $url, $plugin_slug, $campaign, $this->get_plugin_version_type(), $content, $term );
 			}
 
 			return $url;

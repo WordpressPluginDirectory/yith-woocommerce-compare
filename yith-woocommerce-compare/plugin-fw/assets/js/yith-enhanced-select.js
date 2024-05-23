@@ -32,7 +32,7 @@ jQuery( function ( $ ) {
 	var cleanRequestData = function ( data ) {
 		data = $.extend( {}, data );
 		$.each(
-			['placeholder', 'allow_clear', 'minimum_input_length', 'sortable'],
+			[ 'placeholder', 'allow_clear', 'minimum_input_length', 'sortable' ],
 			function ( _, key ) {
 				delete data[ key ];
 			}
@@ -55,6 +55,7 @@ jQuery( function ( $ ) {
 						allowClear        : $( this ).data( 'allow_clear' ) ? true : false,
 						placeholder       : $( this ).data( 'placeholder' ),
 						minimumInputLength: $( this ).data( 'minimum_input_length' ) ? $( this ).data( 'minimum_input_length' ) : '3',
+						closeOnSelect     : $( this ).data( 'close_on_select' ) !== 'no',
 						language          : getEnhancedSelectLanguage(),
 						escapeMarkup      : function ( m ) {
 							return m;
@@ -114,6 +115,7 @@ jQuery( function ( $ ) {
 						allowClear        : $( this ).data( 'allow_clear' ) ? true : false,
 						placeholder       : $( this ).data( 'placeholder' ),
 						minimumInputLength: $( this ).data( 'minimum_input_length' ) ? $( this ).data( 'minimum_input_length' ) : '3',
+						closeOnSelect     : $( this ).data( 'close_on_select' ) !== 'no',
 						language          : getEnhancedSelectLanguage(),
 						escapeMarkup      : function ( m ) {
 							return m;
@@ -174,6 +176,7 @@ jQuery( function ( $ ) {
 						allowClear        : $( this ).data( 'allow_clear' ) ? true : false,
 						placeholder       : $( this ).data( 'placeholder' ),
 						minimumInputLength: $( this ).data( 'minimum_input_length' ) ? $( this ).data( 'minimum_input_length' ) : '3',
+						closeOnSelect     : $( this ).data( 'close_on_select' ) !== 'no',
 						language          : getEnhancedSelectLanguage(),
 						escapeMarkup      : function ( m ) {
 							return m;

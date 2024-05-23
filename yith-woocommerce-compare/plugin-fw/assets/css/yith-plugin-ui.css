@@ -63,6 +63,10 @@
   --yith-field-border-radius: 6px;
   --yith-field-placeholder-color: #8f9eb0;
   --yith-link: #0079b0;
+  --yith-dialog-z-index: 999995;
+  --yith-modal-z-index: 999999;
+  --yith-modal-allow-wp-z-index: 1500;
+  --yith-tip-tip-z-index: 1500;
 }
 
 /**
@@ -105,18 +109,29 @@
   color: #a10000;
 }
 
+.yith-plugin-ui .yith-plugin-fw__action-button .yith-plugin-fw__action-button__menu__backdrop, .yith-plugin-fw__action-button .yith-plugin-fw__action-button__menu__backdrop {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: calc(var(--yith-dialog-z-index) - 1);
+  cursor: default;
+}
+
 .yith-plugin-ui .yith-plugin-fw__action-button .yith-plugin-fw__action-button__menu, .yith-plugin-fw__action-button .yith-plugin-fw__action-button__menu {
   position: absolute;
   display: none;
   flex-direction: column;
   width: max-content;
-  right: 0;
   margin: 5px 0 0 0;
   padding: 8px 0;
   background: var(--yith-content-bg);
   border-radius: 5px;
   box-shadow: 0 2px 7px rgba(170, 198, 222, 0.5);
-  z-index: 9999;
+  z-index: var(--yith-dialog-z-index);
   animation: yith-plugin-fw-appear-from-top .3s forwards;
 }
 
@@ -145,6 +160,10 @@
 .yith-plugin-ui .yith-plugin-fw__action-button.yith-plugin-fw__action-button--has-menu.yith-plugin-fw__action-button--opened .yith-plugin-fw__action-button__menu, .yith-plugin-fw__action-button.yith-plugin-fw__action-button--has-menu.yith-plugin-fw__action-button--opened .yith-plugin-fw__action-button__menu {
   position: fixed;
   display: flex;
+}
+
+.yith-plugin-ui .yith-plugin-fw__action-button.yith-plugin-fw__action-button--has-menu.yith-plugin-fw__action-button--opened .yith-plugin-fw__action-button__menu__backdrop, .yith-plugin-fw__action-button.yith-plugin-fw__action-button--has-menu.yith-plugin-fw__action-button--opened .yith-plugin-fw__action-button__menu__backdrop {
+  display: block;
 }
 
 .yith-plugin-ui .button-primary,
@@ -952,13 +971,15 @@
 }
 
 .yith-plugin-fw__list-item:not(.yith-plugin-fw__list-item--no-link) .yith-plugin-fw__list-item__wrap:hover .yith-plugin-fw__list-item__step,
+.yith-plugin-fw__list-item:not(.yith-plugin-fw__list-item--no-link) .yith-plugin-fw__list-item__wrap:hover .yith-plugin-fw__list-item__title,
 .yith-plugin-fw__list-item:not(.yith-plugin-fw__list-item--no-link) .yith-plugin-fw__list-item__wrap:hover .yith-plugin-fw__list-item__arrow {
   color: var(--yith-link);
 }
 
 .yith-plugin-fw__list-item mark {
   background: transparent;
-  color: var(--yith-link);
+  color: inherit;
+  font-weight: 600;
 }
 
 .yith-plugin-fw__list-item .yith-plugin-fw__list-item__step {
@@ -1038,7 +1059,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999999;
+  z-index: var(--yith-modal-z-index);
   background: rgba(34, 59, 80, 0.7);
   animation: yith-plugin-fw-fade-in .3s forwards;
   box-sizing: border-box;
@@ -1098,13 +1119,13 @@
 }
 
 .yith-plugin-fw__modal--allow-wp-menu .yith-plugin-fw__modal__wrap {
-  z-index: 99;
+  z-index: var(--yith-modal-allow-wp-z-index);
   padding-left: 160px;
   padding-top: 32px;
 }
 
 .yith-plugin-fw__modal--allow-wp-menu #adminmenuback {
-  z-index: 100;
+  z-index: calc(var(--yith-modal-allow-wp-z-index) + 1);
 }
 
 @media only screen and (max-width: 960px) {
@@ -1118,14 +1139,14 @@
 
 @media screen and (max-width: 782px) {
   .auto-fold .yith-plugin-fw__modal--allow-wp-menu .yith-plugin-fw__modal__wrap {
-    z-index: 999999;
+    z-index: var(--yith-modal-z-index);
     width: 100%;
     height: 100%;
     padding-left: 0;
     padding-top: 0;
   }
   .auto-fold .yith-plugin-fw__modal--allow-wp-menu-in-mobile .yith-plugin-fw__modal__wrap {
-    z-index: 99;
+    z-index: var(--yith-modal-allow-wp-z-index);
     padding-top: 46px;
   }
   .auto-fold .yith-plugin-fw__modal--allow-wp-menu-in-mobile.wp-responsive-open .yith-plugin-fw__modal__wrap {
@@ -1235,7 +1256,7 @@
   display: none;
   pointer-events: none;
   /* Fix tip flashing when hover the edge */
-  z-index: 8675309;
+  z-index: var(--yith-tip-tip-z-index);
   position: absolute;
   top: 0;
   /*rtl:ignore*/
@@ -2024,6 +2045,27 @@ table.yith-plugin-fw__boxed-table.wp-list-table tbody tr:hover .yith-plugin-fw__
   margin: 0 !important;
 }
 
+@media screen and (min-width: 783px) {
+  .yith-plugin-ui--classic-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling, .yith-plugin-ui #plugin-fw-wc .yith-plugin-ui--classic-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling {
+    position: relative;
+  }
+  .yith-plugin-ui--classic-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling:after, .yith-plugin-ui #plugin-fw-wc .yith-plugin-ui--classic-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    box-shadow: 0 0 15px 4px var(--yith-shadow);
+    pointer-events: none;
+    clip-path: polygon(-15px 0, 100% 0, 100% 100%, -15px 100%);
+    z-index: 99;
+  }
+  .yith-plugin-ui--classic-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling.yith-plugin-ui--is-scrolled:after, .yith-plugin-ui #plugin-fw-wc .yith-plugin-ui--classic-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling.yith-plugin-ui--is-scrolled:after {
+    display: none;
+  }
+}
+
 .yith-plugin-ui--boxed-wp-list-style .subsubsub, .yith-plugin-ui #plugin-fw-wc .yith-plugin-ui--boxed-wp-list-style .subsubsub {
   border-bottom: 1px solid var(--yith-table-border-light);
   margin: 25px 0;
@@ -2291,7 +2333,7 @@ table.yith-plugin-fw__boxed-table.wp-list-table tbody tr:hover .yith-plugin-fw__
   display: flex;
 }
 
-.yith-plugin-ui--boxed-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper, .yith-plugin-ui #plugin-fw-wc .yith-plugin-ui--boxed-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper {
+.yith-plugin-ui--boxed-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper .yith-plugin-ui__wp-list-auto-h-scroll__scrollable, .yith-plugin-ui #plugin-fw-wc .yith-plugin-ui--boxed-wp-list-style .yith-plugin-ui__wp-list-auto-h-scroll__wrapper .yith-plugin-ui__wp-list-auto-h-scroll__scrollable {
   padding: 0 1px;
   margin: 20px -1px 0;
 }
@@ -2399,7 +2441,31 @@ table.yith-plugin-ui__wp-list-auto-h-scroll:not(.yith-plugin-ui__wp-list-auto-h-
 
 .yith-plugin-ui__wp-list-auto-h-scroll__wrapper {
   width: 100%;
+}
+
+.yith-plugin-ui__wp-list-auto-h-scroll__wrapper ::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.yith-plugin-ui__wp-list-auto-h-scroll__wrapper ::-webkit-scrollbar:horizontal {
+  height: 7px;
+}
+
+.yith-plugin-ui__wp-list-auto-h-scroll__wrapper ::-webkit-scrollbar:vertical {
+  width: 7px;
+}
+
+.yith-plugin-ui__wp-list-auto-h-scroll__wrapper ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.yith-plugin-ui__wp-list-auto-h-scroll__wrapper .yith-plugin-ui__wp-list-auto-h-scroll__scrollable {
   overflow-x: auto;
+}
+
+.yith-plugin-ui__wp-list-auto-h-scroll__wrapper .yith-plugin-ui__wp-list-auto-h-scroll__scrollable.yith-plugin-ui--has-scrolling {
+  overflow-x: scroll;
 }
 
 .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui__wp-list-auto-h-scroll__wrapper--classic {
@@ -2411,7 +2477,28 @@ table.yith-plugin-ui__wp-list-auto-h-scroll:not(.yith-plugin-ui__wp-list-auto-h-
   margin: 0 !important;
 }
 
-.yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui__wp-list-auto-h-scroll__wrapper--boxed {
+@media screen and (min-width: 783px) {
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui__wp-list-auto-h-scroll__wrapper--classic.yith-plugin-ui--has-scrolling {
+    position: relative;
+  }
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui__wp-list-auto-h-scroll__wrapper--classic.yith-plugin-ui--has-scrolling:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    box-shadow: 0 0 15px 4px var(--yith-shadow);
+    pointer-events: none;
+    clip-path: polygon(-15px 0, 100% 0, 100% 100%, -15px 100%);
+    z-index: 99;
+  }
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui__wp-list-auto-h-scroll__wrapper--classic.yith-plugin-ui--has-scrolling.yith-plugin-ui--is-scrolled:after {
+    display: none;
+  }
+}
+
+.yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui__wp-list-auto-h-scroll__wrapper--boxed .yith-plugin-ui__wp-list-auto-h-scroll__scrollable {
   padding: 0 1px;
   margin: 20px -1px 0;
 }
@@ -2491,6 +2578,30 @@ table.yith-plugin-ui__wp-list-auto-h-scroll:not(.yith-plugin-ui__wp-list-auto-h-
   .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > thead > tr > .check-column + *, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tbody > tr > .check-column + *, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tfoot > tr > .check-column + *, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > thead > tr > .check-column + *, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tbody > tr > .check-column + *, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tfoot > tr > .check-column + * {
     left: 42px;
   }
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > thead > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > thead > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tbody > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tbody > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tfoot > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tfoot > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > thead > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > thead > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tbody > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tbody > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tfoot > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tfoot > tr > .column-primary {
+    max-width: 250px;
+  }
+}
+
+@media screen and (min-width: 783px) and (max-width: 1024px) {
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > thead > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > thead > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tbody > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tbody > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tfoot > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.wp-list-table > tfoot > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > thead > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > thead > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tbody > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tbody > tr > .column-primary, .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tfoot > tr > .check-column + *,
+  .yith-plugin-ui__wp-list-auto-h-scroll__wrapper table.yith-plugin-ui__wp-list-auto-h-scroll > tfoot > tr > .column-primary {
+    max-width: 200px;
+  }
+}
+
+@media screen and (min-width: 783px) {
   .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling table.wp-list-table > thead > tr > *:nth-child(1),
   .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling table.wp-list-table > thead > tr > .check-column + *,
   .yith-plugin-ui__wp-list-auto-h-scroll__wrapper.yith-plugin-ui--has-scrolling table.wp-list-table > thead#the-list > tr:last-child > *:nth-child(1),

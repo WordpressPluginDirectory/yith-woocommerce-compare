@@ -13,7 +13,8 @@ jQuery(document).ready(function($) {
             data = {
                 action: yith_woocompare.actionadd,
                 id: button.data('product_id'),
-                context: 'frontend'
+                context: 'frontend',
+                security: yith_woocompare.add_nonce,
             },
             widget_list = $('.yith-woocompare-widget ul.products-list');
 
@@ -76,7 +77,8 @@ jQuery(document).ready(function($) {
                     var widget_list = $('.yith-woocompare-widget ul.products-list'),
                         data = {
                             action: yith_woocompare.actionreload,
-                            context: 'frontend'
+                            context: 'frontend',
+                            security: yith_woocompare.reload_nonce,
                         };
 
                     if( typeof $.fn.block != 'undefined' ) {
@@ -131,7 +133,8 @@ jQuery(document).ready(function($) {
             data = {
                 action: yith_woocompare.actionremove,
                 id: button.data('product_id'),
-                context: 'frontend'
+                context: 'frontend',
+                security: yith_woocompare.remove_nonce,
             },
             product_cell = $( 'td.product_' + data.id + ', th.product_' + data.id );
 
@@ -198,7 +201,8 @@ jQuery(document).ready(function($) {
                     id: prod_id,
                     context: 'frontend',
                     responseType: 'product_list',
-                    lang: lang
+                    lang: lang,
+                    security: yith_woocompare.remove_nonce,
                 },
                 product_list = button.parents('.yith-woocompare-widget').find('ul.products-list');
 
