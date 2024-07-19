@@ -2372,6 +2372,8 @@ if ( ! function_exists( 'yith_plugin_fw_kses_allowed_svg_tags' ) ) {
 				'class'           => true,
 				'd'               => true,
 				'fill'            => true,
+				'clip-rule'       => true,
+				'fill-rule'       => true,
 				'stroke-linecap'  => true,
 				'stroke-linejoin' => true,
 			),

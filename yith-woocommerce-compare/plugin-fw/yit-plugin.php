@@ -39,6 +39,7 @@ require_once 'includes/privacy/class-yith-privacy-plugin-abstract.php';
 require_once 'includes/class-yith-system-status.php';
 require_once 'includes/class-yith-post-type-admin.php';
 require_once 'includes/class-yith-bh-onboarding.php';
+require_once 'includes/class-yith-external-services.php';
 
 // Gutenberg Support.
 if ( class_exists( 'WP_Block_Type_Registry' ) ) {

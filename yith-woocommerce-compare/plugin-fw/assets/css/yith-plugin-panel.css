@@ -25,7 +25,14 @@ body.yith-plugin-fw-panel.yith-plugin-fw-panel--version-2 #screen-meta-links {
 }
 
 body.yith-plugin-fw-panel.yith-plugin-fw-panel--version-2 #yith-plugin-fw__panel__notices {
-  margin: 35px 20px -24px 0;
+  margin: 32px 24px -24px 0;
+  max-width: 2175px;
+}
+
+@media screen and (max-width: 782px) {
+  body.yith-plugin-fw-panel.yith-plugin-fw-panel--version-2 #yith-plugin-fw__panel__notices {
+    margin-right: 10px;
+  }
 }
 
 body.yith-plugin-fw-panel.yith-plugin-fw-panel--version-2 #yith-plugin-fw__panel__notices .notice {
@@ -528,6 +535,7 @@ body.yith-plugin-fw-panel.yith-plugin-fw-panel--version-2 .yith-plugin-fw-rate {
   font-weight: 400;
   font-size: inherit;
   margin-bottom: 8px;
+  padding-inline-end: 70px;
 }
 
 .yith-plugin-fw__panel__content .yith-plugin-fw__panel__option.yith-plugin-fw__panel__option--onoff {
