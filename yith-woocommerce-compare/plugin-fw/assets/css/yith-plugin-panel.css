@@ -596,6 +596,7 @@ body.yith-plugin-fw-panel.yith-plugin-fw-panel--version-2 .yith-plugin-fw-rate {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
   background: #f8fafc;
+  z-index: 10;
 }
 
 .yith-plugin-fw__panel__content .yith-plugin-fw__panel__content__actions :not(style) + :not(style) {
