@@ -43,8 +43,6 @@ if ( ! class_exists( 'YITH_Woocompare' ) ) {
 
 			add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 
-			// Load Plugin Framework.
-			add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
             add_action( 'before_woocommerce_init', array( $this, 'declare_wc_features_support' ) );
 
 			if ( $this->is_frontend() ) {
@@ -90,24 +88,6 @@ if ( ! class_exists( 'YITH_Woocompare' ) ) {
 			$is_ajax  = ( defined( 'DOING_AJAX' ) && DOING_AJAX );
 			$is_admin = ( is_admin() || $is_ajax && isset( $_REQUEST['context'] ) && sanitize_text_field( wp_unslash( $_REQUEST['context'] ) ) === 'admin' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return apply_filters( 'yith_woocompare_check_is_admin', (bool) $is_admin );
-		}
-
-		/**
-		 * Load Plugin Framework
-		 *
-		 * @since  1.0
-		 * @access public
-		 * @return void
-		 */
-		public function plugin_fw_loader() {
-
-			if ( ! defined( 'YIT_CORE_PLUGIN' ) ) {
-				global $plugin_fw_data;
-				if ( ! empty( $plugin_fw_data ) ) {
-					$plugin_fw_file = array_shift( $plugin_fw_data );
-					require_once $plugin_fw_file;
-				}
-			}
 		}
 
         /**
