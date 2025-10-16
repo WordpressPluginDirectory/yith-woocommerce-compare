@@ -444,7 +444,17 @@ if ( ! class_exists( 'YITH_WooCompare_Frontend' ) ) {
 		public function stylesheet_url() {
 			$asset_path = wp_normalize_path( wc_locate_template( $this->stylesheet_file, '', YITH_WOOCOMPARE_DIR . 'assets/css/' ) );
 			$asset_path = str_replace( array( wp_normalize_path( ABSPATH ), PATH_SEPARATOR ), array( '', '/' ), $asset_path );
-			$asset_url  = home_url( $asset_path );
+			/**
+			 * APPLY_FILTERS: yith_woocompare_asset_url
+			 *
+			 * Filters the URL to return the stylesheet position.
+			 *
+			 * @param string $url        URL of stylesheet position.
+			 * @param string $asset_path Asset path.
+			 *
+			 * @return string
+			 */
+			$asset_url  = apply_filters( 'yith_woocompare_asset_url', home_url( $asset_path ), $asset_path );
 
 			return $asset_url;
 		}
