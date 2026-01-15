@@ -148,21 +148,29 @@ if ( ! class_exists( 'YIT_Assets' ) ) {
 
 				// New handle => legacy handle (since WooCommerce 10.3.0).
 				$mapping = [
-					'wc-select2'        => 'select2',
-					'wc-jquery-blockui' => 'jquery-blockui',
-					'wc-jquery-tiptip'  => 'jquery-tiptip',
-					'wc-round'          => 'round',
-					'wc-qrcode'         => 'qrcode',
-					'wc-stupidtable'    => 'stupidtable',
-					'wc-serializejson'  => 'serializejson',
-					'wc-flot'           => 'flot',
-					'wc-flot-resize'    => 'flot-resize',
-					'wc-flot-time'      => 'flot-time',
-					'wc-flot-pie'       => 'flot-pie',
-					'wc-flot-stack'     => 'flot-stack',
-					'wc-js-cookie'      => 'js-cookie',
-					'wc-dompurify'      => 'dompurify',
-					'wc-accounting'     => 'accounting',
+					'wc-select2'               => 'select2',
+					'wc-jquery-blockui'        => 'jquery-blockui',
+					'wc-jquery-tiptip'         => 'jquery-tiptip',
+					'wc-round'                 => 'round',
+					'wc-qrcode'                => 'qrcode',
+					'wc-stupidtable'           => 'stupidtable',
+					'wc-serializejson'         => 'serializejson',
+					'wc-flot'                  => 'flot',
+					'wc-flot-resize'           => 'flot-resize',
+					'wc-flot-time'             => 'flot-time',
+					'wc-flot-pie'              => 'flot-pie',
+					'wc-flot-stack'            => 'flot-stack',
+					'wc-js-cookie'             => 'js-cookie',
+					'wc-dompurify'             => 'dompurify',
+					'wc-accounting'            => 'accounting',
+					// Frontend
+					'wc-flexslider'            => 'flexslider',
+					'wc-jquery-cookie'         => 'jquery-cookie',
+					'wc-photoswipe'            => 'photoswipe',
+					'wc-photoswipe-ui-default' => 'photoswipe-ui-default',
+					'wc-prettyPhoto'           => 'prettyPhoto',
+					'wc-prettyPhoto-init'      => 'prettyPhoto-init',
+					'wc-zoom'                  => 'zoom',
 				];
 
 				if ( version_compare( $wc_version, '10.3.0', '>=' ) ) {
@@ -216,10 +224,57 @@ if ( ! class_exists( 'YIT_Assets' ) ) {
 
 				wp_register_style( 'woocommerce_admin_styles', $woocommerce->plugin_url() . '/assets/css/admin.css', array(), $woocommerce_version );
 			} else {
-				wp_register_script( 'jquery-tiptip', YIT_CORE_PLUGIN_URL . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), '1.3', true );
-				wp_register_script( 'select2', YIT_CORE_PLUGIN_URL . '/assets/js/select2/select2.min.js', array( 'jquery' ), '4.0.3', true );
-				wp_register_script( 'wc-jquery-tiptip', YIT_CORE_PLUGIN_URL . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), '1.3', true );
-				wp_register_script( 'wc-select2', YIT_CORE_PLUGIN_URL . '/assets/js/select2/select2.min.js', array( 'jquery' ), '4.0.3', true );
+
+				$wc_scripts = array(
+					array(
+						'legacy_handle' => 'jquery-blockui',
+						'handle'        => 'wc-jquery-blockui',
+						'path'          => YIT_CORE_PLUGIN_URL . '/assets/js/jquery-blockui/jquery.blockUI.min.js',
+						'dependencies'  => array( 'jquery' ),
+						'version'       => '2.70',
+						'args'          => array(
+							'in_footer' => true,
+						),
+					),
+					array(
+						'legacy_handle' => 'jquery-tiptip',
+						'handle'        => 'wc-jquery-tiptip',
+						'path'          => YIT_CORE_PLUGIN_URL . '/assets/js/jquery-tiptip/jquery.tipTip.min.js',
+						'dependencies'  => array( 'jquery' ),
+						'version'       => '1.3',
+						'args'          => array(
+							'in_footer' => true,
+						),
+					),
+					array(
+						'legacy_handle' => 'select2',
+						'handle'        => 'wc-select2',
+						'path'          => YIT_CORE_PLUGIN_URL . '/assets/js/select2/select2.min.js',
+						'dependencies'  => array( 'jquery' ),
+						'version'       => '4.0.3',
+					),
+				);
+
+				foreach ( $wc_scripts as $script ) {
+					wp_register_script(
+						$script['handle'],
+						$script['path'],
+						$script['dependencies'] ?? array(),
+						$script['version'] ?? null,
+						$script['args'] ?? array( 'in_footer' => false )
+					);
+
+					if ( isset( $script['legacy_handle'] ) ) {
+						wp_register_script(
+							$script['legacy_handle'],
+							$script['path'],
+							$script['dependencies'] ?? array(),
+							$script['version'] ?? null,
+							$script['args'] ?? array( 'in_footer' => false )
+						);
+					}
+				}
+
 				wp_register_style( 'yith-select2-no-wc', YIT_CORE_PLUGIN_URL . '/assets/css/yith-select2-no-wc.css', false, $this->version );
 			}
 

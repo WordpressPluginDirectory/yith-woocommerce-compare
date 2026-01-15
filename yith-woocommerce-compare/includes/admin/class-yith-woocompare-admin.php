@@ -319,7 +319,7 @@ if ( ! class_exists( 'YITH_WooCompare_Admin' ) ) {
 		public function admin_update_custom_option( $value, $option ) {
 
 			$val            = array();
-			$checked_fields = isset( $_POST[ $option['id'] ] ) ? maybe_unserialize( wp_unslash( $_POST[ $option['id'] ] ) ) : array(); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$checked_fields = isset( $_POST[ $option['id'] ] ) && is_array( $_POST[ $option['id'] ] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST[ $option['id'] ] ) ) : array(); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$fields         = isset( $_POST[ $option['id'] . '_positions' ] ) ? array_map( 'wc_clean', explode( ',', wp_unslash( $_POST[ $option['id'] . '_positions' ] ) ) ) : array(); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 			foreach ( $fields as $field ) {
